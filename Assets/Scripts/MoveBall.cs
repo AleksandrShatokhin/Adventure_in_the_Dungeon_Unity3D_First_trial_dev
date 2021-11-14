@@ -19,7 +19,7 @@ public class MoveBall : MonoBehaviour
         ball_RB.AddForce(transform.forward * speedBall * Time.deltaTime, ForceMode.Impulse);
     }
 
-    private void OnCollisionEnter (Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
             {

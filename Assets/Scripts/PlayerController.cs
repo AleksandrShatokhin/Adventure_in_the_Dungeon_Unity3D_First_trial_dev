@@ -51,12 +51,13 @@ public class PlayerController : MonoBehaviour
     // пропишем проверку на соприкосновение с землей
     private void OnCollisionEnter (Collision collision)
     {
+        //проверка на столкновение с слоем земли
         if (collision.gameObject.layer == 3)
         {
             isOnGround = true;
         }
         
-
+        //проверка на столкновение с монетами
         if (collision.gameObject.tag == "Coin")
         {
             coinCounter = coinCounter + 1;
@@ -82,21 +83,5 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -90, 0), 1);
                 playerAnim.SetFloat("Speed_f", speedPlayer);
             }
-
-        /*rotPlayer = transform.rotation;
-        //зададим, чтоб не терялось положение по оси z
-        if (transform.position.z != posPlayer.z)
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            }
-        //зададим, чтоб персонаж не падал
-        if (transform.rotation.x != rotPlayer.x)
-            {
-                transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
-            }
-        if (transform.rotation.z != rotPlayer.z)
-            {
-                transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
-            }*/
     }
 }

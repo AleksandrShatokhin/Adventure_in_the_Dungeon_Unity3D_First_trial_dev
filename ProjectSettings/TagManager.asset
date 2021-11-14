@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Coin
   - Ball
+  - Platform
   layers:
   - Default
   - TransparentFX
