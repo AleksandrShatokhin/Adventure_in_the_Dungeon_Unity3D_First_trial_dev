@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float coinCounter = 0;
     public float speedPlayer;
     public GameObject ballPrefab;
 
@@ -60,8 +59,8 @@ public class PlayerController : MonoBehaviour
         //проверка на столкновение с монетами
         if (collision.gameObject.tag == "Coin")
         {
-            coinCounter = coinCounter + 1;
             Destroy(collision.gameObject);
+            MainUI.coinCounter += 1;
         }
     }
 
