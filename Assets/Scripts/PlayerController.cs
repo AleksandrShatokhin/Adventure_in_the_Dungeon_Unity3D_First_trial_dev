@@ -12,8 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isOnGround = true;
 
-    //private Vector3 posPlayer;
-    //public Quaternion rotPlayer;
+    private Vector3 deathSpace;
 
     private Transform spawnBall;
     
@@ -23,9 +22,9 @@ public class PlayerController : MonoBehaviour
         jumpPlayer = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
 
-        //posPlayer = transform.position;
-
         spawnBall = GameObject.Find("SpawnBall").GetComponent<Transform>();
+
+        deathSpace = new Vector3(0, -15, 0); // определяю на каком расстоянии будет умирать игрок при падении в пустоту
     }
 
     void Update()
@@ -45,6 +44,13 @@ public class PlayerController : MonoBehaviour
             {
                 Instantiate(ballPrefab, spawnBall.transform.position, transform.rotation);
             }
+        
+        // пока введу данный код для уничтожения игрока, если он провелится в пустоту
+        // потенциально сделать метод смерти и вызывать при падении
+        if (transform.position.y < deathSpace.y)
+        {
+            GameController.IsDeath(GameObject.Find("Player"));
+        }
     }
 
     // пропишем проверку на соприкосновение с землей

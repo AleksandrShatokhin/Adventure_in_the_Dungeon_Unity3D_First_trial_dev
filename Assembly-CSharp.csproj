@@ -39,11 +39,12 @@
      <Compile Include="Assets\Scripts\MainUI.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\CoinManager.cs" />
+     <Compile Include="Assets\Scripts\ColPlatform.cs" />
      <Compile Include="Assets\Scripts\BoxManager.cs" />
      <Compile Include="Assets\Scripts\MoveBall.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\PlatformManager.cs" />
-     <Compile Include="Assets\Scripts\ColPlatform.cs" />
+     <Compile Include="Assets\Scripts\GameController.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
