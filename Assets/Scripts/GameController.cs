@@ -9,5 +9,6 @@ public class GameController : MonoBehaviour
         Destroy(player);
         Debug.Log("GameOver");
         CameraController.isDeathPlayer = true;
+        PlatformManager.isDeathPlayer = true;
     }
 }

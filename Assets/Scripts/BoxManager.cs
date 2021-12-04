@@ -11,7 +11,7 @@ public class BoxManager : MonoBehaviour
         if (collision.gameObject.tag == "Ball")
         {
             Destroy(gameObject);
-            Instantiate(coinPrefab, transform.position, coinPrefab.transform.rotation);
+            Instantiate(coinPrefab, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), coinPrefab.transform.rotation);
         }
     }
 }

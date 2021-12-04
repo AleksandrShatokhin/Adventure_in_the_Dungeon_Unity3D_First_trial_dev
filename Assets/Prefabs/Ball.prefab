@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7563371917958492014}
   - component: {fileID: 7563371917958492001}
   - component: {fileID: -2402735677154200929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -109,7 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8f4a68db78ab643befa61160ca017d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBall: 50
 --- !u!54 &-2402735677154200929
 Rigidbody:
   m_ObjectHideFlags: 0
