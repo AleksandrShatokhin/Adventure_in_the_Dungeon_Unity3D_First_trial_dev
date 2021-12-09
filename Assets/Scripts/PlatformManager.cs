@@ -12,11 +12,13 @@ public class PlatformManager : MonoBehaviour
     private Vector3 endPosP1, endPosP2, endPosP3, endPosP4, endPosP5, endPosP6, endPosP7, endPosP8, endPosP9;
     private bool isEndP1 = false, isEndP2 = false, isEndP3 = false, isEndP4 = false, isEndP5 = false, isEndP6 = false, isEndP7 = false, isEndP8 = false, isEndP9 = false;
 
-    public static bool isDeathPlayer = false;
+    public static bool isDeathPlayer;
 
 
     void Start()
     {
+        isDeathPlayer = false;
+
         startPosP1 = platform_1.transform.position;
         endPosP1 = new Vector3(platform_1.transform.position.x + 7, platform_1.transform.position.y, platform_1.transform.position.z);
 

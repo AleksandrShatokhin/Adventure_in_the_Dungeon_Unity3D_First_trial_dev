@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     public float speedPlayer;
     public GameObject ballPrefab;
 
+    public GameObject deathWindow; // понадобилась переменная именно в этом скрипте, чтоб передать ее значение в GameController
+    // при обращении к методу смерти игрока
+
     private Animator playerAnim;
     private Rigidbody jumpPlayer;
 
@@ -15,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 deathSpace;
 
     private Transform spawnBall;
-    public static int healthPlayer = 5;
+    public static int healthPlayer;
     
 
     void Start()
@@ -26,12 +29,12 @@ public class PlayerController : MonoBehaviour
         spawnBall = GameObject.Find("SpawnBall").GetComponent<Transform>();
 
         deathSpace = new Vector3(0, -15, 0); // определяю на каком расстоянии будет умирать игрок при падении в пустоту
+
+        healthPlayer = 5;
     }
 
     void Update()
     {
-        Debug.Log(healthPlayer);
-
         MoveCharacter();
 
         //пропишем прыжок персонажа
@@ -51,9 +54,7 @@ public class PlayerController : MonoBehaviour
         // пока введу данный код для уничтожения игрока, если он провелится в пустоту
         // потенциально сделать метод смерти и вызывать при падении
         if (transform.position.y < deathSpace.y || healthPlayer == 0)
-        {
-            GameController.IsDeath(gameObject);
-        }
+            GameController.IsDeath(gameObject, deathWindow);
     }
 
     //Задаем движение персонажа

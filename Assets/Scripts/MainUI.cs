@@ -6,10 +6,12 @@ using TMPro;
 
 public class MainUI : MonoBehaviour
 {
-    public TextMeshProUGUI coinCounterText;
+    public TextMeshProUGUI coinCounterText, healthText;
     public GameObject redKey, greenKey, blueKey;
     public static byte coinCounter = 0;
     public static bool isRedKey = false, isGreenKey = false, isBlueKey = false;
+
+    public static TextMeshProUGUI finalDoorText;
 
 
     void Start()
@@ -17,11 +19,15 @@ public class MainUI : MonoBehaviour
         redKey.SetActive(false);
         blueKey.SetActive(false);
         greenKey.SetActive(false);
+
+        finalDoorText = GameObject.Find("FinalDoorText").GetComponent<TextMeshProUGUI>();
+        finalDoorText.text = null;
     }
 
     void Update()
     {
         coinCounterText.text = "Монеты: " + coinCounter;
+        healthText.text = " - " + PlayerController.healthPlayer;
 
         KeyOnScreen();
     }

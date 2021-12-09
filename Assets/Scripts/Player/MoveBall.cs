@@ -23,10 +23,35 @@ public class MoveBall : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.layer == 6 || collision.gameObject.layer == 3)
             Destroy(gameObject);
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.tag == "RedKey" || collision.gameObject.tag == "BlueKey" || collision.gameObject.tag == "GreenKey")
+            Destroy(gameObject);
+
+        // так как у меня получается несколько врагов на уровне
+        // появилась необходимость объединить их под один слой
+        // и разделить на разные тэги
+        if (collision.gameObject.layer == 9)
         {
             Destroy(gameObject);
-            EnemyController.healthEnemy -= damage;
+
+            // попадание снаряда в первого врага
+            if (collision.gameObject.tag == "Enemy")
+                Enemy_1.healthEnemy -= damage;
+            
+            // попадание снаряда во второго врага
+            if (collision.gameObject.tag == "Enemy_2")
+                Enemy_2.healthEnemy -= damage;
+
+            // попадание снаряда в третьего врага
+            if (collision.gameObject.tag == "Enemy_3")
+                Enemy_3.healthEnemy -= damage;
+
+            // попадание снаряда в четвертого врага
+            if (collision.gameObject.tag == "Enemy_4")
+                Enemy_4.healthEnemy -= damage;
+
+            // попадание снаряда в пятого врага
+            if (collision.gameObject.tag == "Enemy_5")
+                Enemy_5.healthEnemy -= damage;
         }
     }
 }

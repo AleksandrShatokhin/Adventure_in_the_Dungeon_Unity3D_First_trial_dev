@@ -13,6 +13,10 @@ TagManager:
   - BlueKey
   - GreenKey
   - Enemy
+  - Enemy_2
+  - Enemy_3
+  - Enemy_4
+  - Enemy_5
   layers:
   - Default
   - TransparentFX
@@ -23,7 +27,7 @@ TagManager:
   - Room
   - Ball
   - Bonus
-  - 
+  - Enemy
   - 
   - 
   - 
