@@ -36,27 +36,27 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\MainUI.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\CoinManager.cs" />
-     <Compile Include="Assets\Scripts\ColPlatform.cs" />
-     <Compile Include="Assets\Scripts\BoxManager.cs" />
-     <Compile Include="Assets\Scripts\GameController.cs" />
-     <Compile Include="Assets\Scripts\Enemies\EnemyBall.cs" />
-     <Compile Include="Assets\Scripts\Player\MoveBall.cs" />
-     <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\EnemyManager.cs" />
-     <Compile Include="Assets\Scripts\PlatformManager.cs" />
-     <Compile Include="Assets\Scripts\KeyManager.cs" />
      <Compile Include="Assets\Scripts\Enemies\Enemy_1.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Enemy_2.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Enemy_3.cs" />
-     <Compile Include="Assets\Scripts\Enemies\Enemy_4.cs" />
+     <Compile Include="Assets\Scripts\UI\MainUI.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Game\CoinManager.cs" />
+     <Compile Include="Assets\Scripts\Game\ColPlatform.cs" />
+     <Compile Include="Assets\Scripts\Game\BoxManager.cs" />
      <Compile Include="Assets\Scripts\Enemies\Enemy_5.cs" />
-     <Compile Include="Assets\Scripts\DoorManager.cs" />
-     <Compile Include="Assets\Scripts\DeathWindow.cs" />
-     <Compile Include="Assets\Scripts\WinWindow.cs" />
-     <Compile Include="Assets\Scripts\MainManuManager.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Enemy_4.cs" />
+     <Compile Include="Assets\Scripts\UI\DeathWindow.cs" />
+     <Compile Include="Assets\Scripts\Game\GameController.cs" />
+     <Compile Include="Assets\Scripts\Enemies\EnemyBall.cs" />
+     <Compile Include="Assets\Scripts\UI\WinWindow.cs" />
+     <Compile Include="Assets\Scripts\Player\MoveBall.cs" />
+     <Compile Include="Assets\Scripts\Player\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Game\DoorManager.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Enemy_3.cs" />
+     <Compile Include="Assets\Scripts\Game\PlatformManager.cs" />
+     <Compile Include="Assets\Scripts\UI\MainManuManager.cs" />
+     <Compile Include="Assets\Scripts\Game\KeyManager.cs" />
+     <Compile Include="Assets\Scripts\Enemies\Enemy_2.cs" />
+     <Compile Include="Assets\Scripts\UI\UIManagement.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

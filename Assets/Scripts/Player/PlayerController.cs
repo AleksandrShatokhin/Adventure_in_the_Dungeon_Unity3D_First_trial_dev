@@ -35,21 +35,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        MoveCharacter();
+        MoveCharacter(); //вызываем метод движения
 
-        //пропишем прыжок персонажа
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
-            {
-                jumpPlayer.AddForce(Vector3.up * 420, ForceMode.Impulse);
-                playerAnim.SetTrigger("Jump_trig");
-                isOnGround = false;
-            }
-        
-        //пропишем выстрел игроком снаряда
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Instantiate(ballPrefab, spawnBall.transform.position, transform.rotation);
-            }
+            Jump(); //вызываем метод прыжка игрока
+
+        if (Input.GetKeyDown(KeyCode.F))
+            Shot(); //вызываем метод выстрела персонажа
         
         // пока введу данный код для уничтожения игрока, если он провелится в пустоту
         // потенциально сделать метод смерти и вызывать при падении
@@ -57,24 +49,49 @@ public class PlayerController : MonoBehaviour
             GameController.IsDeath(gameObject, deathWindow);
     }
 
-    //Задаем движение персонажа
-    void MoveCharacter() 
+    
+    void MoveCharacter() //Задаем движение персонажа
     {
         //по нажатию вправо
         if (Input.GetKey(KeyCode.D))
             {
-                transform.Translate(Vector3.forward * speedPlayer * Time.deltaTime * Input.GetAxis("Horizontal"));
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 90, 0), 1);
-                playerAnim.SetFloat("Speed_f", speedPlayer);
+                MoveToRight();
             }
-        else playerAnim.SetFloat("Speed_f", 0);
+        
+        //пришлось убрать пока данную сточку кода, данная строка срабатывает из скрипта UIManagement!!!
+        //else playerAnim.SetFloat("Speed_f", 0); 
+        
         //по нажатию влево
         if (Input.GetKey(KeyCode.A))
             {
-                transform.Translate(Vector3.back * speedPlayer * Time.deltaTime * Input.GetAxis("Horizontal"));
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -90, 0), 1);
-                playerAnim.SetFloat("Speed_f", speedPlayer);
+                MoveToLeft();
             }
+    }
+
+    public void MoveToRight() //движение персонажа вправо
+    {
+        transform.Translate(Vector3.forward * speedPlayer * Time.deltaTime /** Input.GetAxis("Horizontal")*/);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 90, 0), 1);
+        playerAnim.SetFloat("Speed_f", speedPlayer);
+    }
+
+    public void MoveToLeft() //движение персонажа влево
+    {
+        transform.Translate(Vector3.forward * speedPlayer * Time.deltaTime /** Input.GetAxis("Horizontal")*/);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, -90, 0), 1);
+        playerAnim.SetFloat("Speed_f", speedPlayer);
+    }
+
+    public void Jump() //пропишем прыжок персонажа
+    {
+        jumpPlayer.AddForce(Vector3.up * 420, ForceMode.Impulse);
+        playerAnim.SetTrigger("Jump_trig");
+        isOnGround = false;
+    }
+
+    public void Shot() //пропишем выстрел игроком снаряда
+    {
+        Instantiate(ballPrefab, spawnBall.transform.position, transform.rotation);
     }
 
     private void OnCollisionEnter (Collision collision)
@@ -99,12 +116,14 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
+        //проверка на столкновение с синим ключем
         if (collision.gameObject.tag == "BlueKey")
         {
             MainUI.isBlueKey = true;
             Destroy(collision.gameObject);
         }
 
+        //проверка на столкновение с зеленым ключем
         if (collision.gameObject.tag == "GreenKey")
         {
             MainUI.isGreenKey = true;
