@@ -17,6 +17,7 @@ TagManager:
   - Enemy_3
   - Enemy_4
   - Enemy_5
+  - Heart
   layers:
   - Default
   - TransparentFX

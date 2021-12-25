@@ -15,17 +15,22 @@ public class Enemy_2 : MonoBehaviour
     public GameObject ballPrefab;
     private float distance;
     private float nextShot = 0.0f, shotRate = 2.0f; // переменные для контроля выстрелов
-    public static int healthEnemy = 3;
+    public static int healthEnemy;
+    private bool isAudioDeath;
 
     void Start()
     {
         enemyAnim = GetComponent<Animator>();
         enemyRB = GetComponent<Rigidbody>();
 
+        targetPlayer = GameObject.Find("Player").GetComponent<Transform>();
         spawnBall = GameObject.Find("EnemySpawnBall_2").GetComponent<Transform>();
 
         startEnemyPos = transform.position;
         endEnemyPos = new Vector3(transform.position.x + 16, transform.position.y, transform.position.z);
+
+        healthEnemy = 3;
+        isAudioDeath = false;
     }
 
     void Update()
@@ -99,6 +104,7 @@ public class Enemy_2 : MonoBehaviour
             {
                 nextShot = Time.time + shotRate;
                 Instantiate(ballPrefab, spawnBall.transform.position, transform.rotation);
+                GameObject.Find("Game").GetComponent<AudioController>().EnemyCastBall();
             }
     }
 
@@ -106,5 +112,11 @@ public class Enemy_2 : MonoBehaviour
     {
         enemyAnim.SetBool("Death_b", true);
         Destroy(gameObject, 2.0f);
+
+        if (isAudioDeath == false)
+        {
+            GameObject.Find("Game").GetComponent<AudioController>().PlayerDeathEnemy(); // воспроизводим звук смерти
+            isAudioDeath = true;
+        }
     }
 }

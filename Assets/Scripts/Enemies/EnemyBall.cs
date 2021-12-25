@@ -27,6 +27,7 @@ public class EnemyBall : MonoBehaviour
         {
             Destroy(gameObject);
             PlayerController.healthPlayer -= damage;
+            GameObject.Find("Game").GetComponent<AudioController>().EnemyHitPlayer(); // звук удара шарика по телу игрока
         }
     }
 }

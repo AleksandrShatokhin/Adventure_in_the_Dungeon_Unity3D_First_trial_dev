@@ -20,9 +20,9 @@ public class MainUI : MonoBehaviour
         blueKey.SetActive(false);
         greenKey.SetActive(false);
 
-        isRedKey = true;
-        isGreenKey = true; 
-        isBlueKey = true;
+        isRedKey = false;
+        isGreenKey = false; 
+        isBlueKey = false;
 
         coinCounter = 0;
 

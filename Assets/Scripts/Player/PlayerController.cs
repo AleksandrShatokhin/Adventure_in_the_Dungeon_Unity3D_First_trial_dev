@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speedPlayer;
     public GameObject ballPrefab;
+    private GameObject MainGameObj;
 
     public GameObject deathWindow; // понадобилась переменная именно в этом скрипте, чтоб передать ее значение в GameController
     // при обращении к методу смерти игрока
@@ -26,7 +27,9 @@ public class PlayerController : MonoBehaviour
         jumpPlayer = GetComponent<Rigidbody>();
         playerAnim = GetComponent<Animator>();
 
+
         spawnBall = GameObject.Find("SpawnBall").GetComponent<Transform>();
+        MainGameObj = GameObject.Find("Game");
 
         deathSpace = new Vector3(0, -15, 0); // определяю на каком расстоянии будет умирать игрок при падении в пустоту
 
@@ -45,8 +48,8 @@ public class PlayerController : MonoBehaviour
         
         // пока введу данный код для уничтожения игрока, если он провелится в пустоту
         // потенциально сделать метод смерти и вызывать при падении
-        if (transform.position.y < deathSpace.y || healthPlayer == 0)
-            GameController.IsDeath(gameObject, deathWindow);
+        if (transform.position.y < deathSpace.y || healthPlayer <= 0)
+            MainGameObj.GetComponent<GameController>().IsDeath(gameObject, deathWindow);
     }
 
     
@@ -84,9 +87,12 @@ public class PlayerController : MonoBehaviour
 
     public void Jump() //пропишем прыжок персонажа
     {
-        jumpPlayer.AddForce(Vector3.up * 420, ForceMode.Impulse);
-        playerAnim.SetTrigger("Jump_trig");
-        isOnGround = false;
+        if (isOnGround)
+        {
+            jumpPlayer.AddForce(Vector3.up * 420, ForceMode.Impulse);
+            playerAnim.SetTrigger("Jump_trig");
+            isOnGround = false;
+        }
     }
 
     public void Shot() //пропишем выстрел игроком снаряда
@@ -96,24 +102,33 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter (Collision collision)
     {
-        //проверка на столкновение с слоем земли
+        //проверка на столкновение с слоем земли и бонусов (с бонусами необходимо, чтоб от них тоже можно было отпрыгнуть)
         if (collision.gameObject.layer == 3 || collision.gameObject.layer == 8)
         {
             isOnGround = true;
         }
         
         //проверка на столкновение с монетами
-        if (collision.gameObject.tag == "Coin")
-        {
-            Destroy(collision.gameObject);
-            MainUI.coinCounter += 1;
-        }
+        // if (collision.gameObject.tag == "Coin")
+        // {
+        //     Destroy(collision.gameObject);
+        //     MainUI.coinCounter += 1;
+        //     playerAudio.PlayOneShot(audioPickedUpCoin, 0.3f); //воспроизведение звука подбора монет
+        // }
+
+        if (collision.gameObject.tag == "Heart")
+            {
+                Destroy(collision.gameObject);
+                healthPlayer += 1;
+                MainGameObj.GetComponent<AudioController>().PlayerPickedUpHeart(); //воспроизведение звука подбора жизней
+            }
 
         //проверка на столкновение с красным ключем
         if (collision.gameObject.tag == "RedKey")
         {
             MainUI.isRedKey = true;
             Destroy(collision.gameObject);
+            MainGameObj.GetComponent<AudioController>().PlayerPickedUpKey(); //воспроизведение звука подбора ключа
         }
 
         //проверка на столкновение с синим ключем
@@ -121,6 +136,7 @@ public class PlayerController : MonoBehaviour
         {
             MainUI.isBlueKey = true;
             Destroy(collision.gameObject);
+            MainGameObj.GetComponent<AudioController>().PlayerPickedUpKey(); //воспроизведение звука подбора ключа
         }
 
         //проверка на столкновение с зеленым ключем
@@ -128,6 +144,17 @@ public class PlayerController : MonoBehaviour
         {
             MainUI.isGreenKey = true;
             Destroy(collision.gameObject);
+            MainGameObj.GetComponent<AudioController>().PlayerPickedUpKey(); //воспроизведение звука подбора ключа
+        }
+    }
+
+    void OnTriggerEnter(Collider collider) //перевел все монетки в триггер, так как при падении сверху на монетку падение игрока замедлялось
+    {
+        if (collider.gameObject.tag == "Coin")
+        {
+            Destroy(collider.gameObject);
+            MainUI.coinCounter += 1;
+            MainGameObj.GetComponent<AudioController>().PlayerPickedUpCoin(); //воспроизведение звука подбора монет
         }
     }
 }

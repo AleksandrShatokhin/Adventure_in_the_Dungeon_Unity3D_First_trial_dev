@@ -38,7 +38,16 @@ public class UIManagement : MonoBehaviour
 
     void ShotClick() // действия при нажатии на кнопку UI для выстрела
     {
-        player.GetComponent<PlayerController>().Shot();
+        if (DoorManager.inTrigger == false) // если игрок не вошел в триггер двери, кнопка стреляет
+        {
+            player.GetComponent<PlayerController>().Shot();
+            GameObject.Find("Game").GetComponent<AudioController>().PlayerCastBall();
+        }
+        else // если игрок в триггере двери, кнопка позволяет закончить уровень
+        {
+            if (DoorManager.isAll == true)
+                GameObject.Find("Door").GetComponent<DoorManager>().WinLevel();
+        }
     }
 
     public void PointerDownLeft() //по нажатию кнопки влево
