@@ -23,6 +23,6 @@ public class WinWindow : MonoBehaviour
 
     void ToExitMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainManu");
     }
 }
