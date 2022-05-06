@@ -835,4 +835,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainManu.unity
   - Assets/Scenes/MySceneOne.unity
-  playerPath: D:/Unity/Unity Hub/Project/First_Test_Game_Unity3D/BuildVersions/Setup_Adventure_in_the_dungeon(Ver.1.0).apk
+  playerPath: "C:/Users/alsha/OneDrive/\u0420\u0430\u0431\u043E\u0447\u0438\u0439
+    \u0441\u0442\u043E\u043B/Setup_Adventure_in_the_dungeon(Ver.1.0).apk"
